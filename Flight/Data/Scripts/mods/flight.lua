@@ -12,10 +12,24 @@ Flight.Keys = {
 }
 
 Flight.active = false
-Flight.speed = 20
+Flight.speed = 10
 
 function Flight.log(str)
     System.LogAlways(string.format("$5[Flight] " .. str))
+end
+
+System.AddCCommand("flight_speed", "Flight.setSpeed(%line)", nil)
+
+function Flight.setSpeed(line)
+    local _speed = tonumber(line)
+
+    if not _speed or _speed < 0 then
+        Flight.log("Invalid speed value")
+        return
+    end
+
+    Flight.speed = _speed
+    Flight.log("Speed: " .. Flight.speed)
 end
 
 function Player:OnAction(action, activation, value)
@@ -23,11 +37,9 @@ function Player:OnAction(action, activation, value)
         Flight.active = not Flight.active
 
         if Flight.active then
-            Flight.log("Flight on")
-            player.soul:AddPerk("4cfff8f5-85ad-48d2-b8d1-e03fff06bc05")
-            
+            Flight.log("Flight On")
         else
-            Flight.log("Flight off")
+            Flight.log("Flight Off")
         end
 
     elseif action == "flight_forward_keyboard" then
@@ -85,7 +97,6 @@ function Player:OnAction(action, activation, value)
         else
             Flight.Keys.slow = false
         end
-
     end
 end
 
@@ -97,7 +108,7 @@ function Flight.Loop()
         local speed = Flight.speed * System.GetFrameTime()
 
         if Flight.Keys.fast then
-            speed = speed * 7
+            speed = speed * 5
         elseif Flight.Keys.slow then
             speed = speed * 0.2
         end
@@ -123,15 +134,21 @@ function Flight.Loop()
             move = VectorUtils.Sum(move, VectorUtils.Scale(up, speed))
         end
 
+        if Flight.Keys.down then
+            local down = {x = 0, y = 0, z = -1}
+            move = VectorUtils.Sum(move, VectorUtils.Scale(down, speed))
+        end
+
         local finalPos = {x = basePos.x + move.x,
                         y = basePos.y + move.y,
                         z = basePos.z + move.z + 0.00001}
 
         player:SetPos(finalPos)
-        player:SetVelocity({x=0,y=0,z=0})
+        Script.SetTimerForFunction(5, "Flight.Loop")
+        return
     end
 
-    Script.SetTimerForFunction(5, "Flight.Loop")
+    Script.SetTimerForFunction(100, "Flight.Loop")
 end
 
 
@@ -141,6 +158,8 @@ function Flight:OnGameplayStarted()
     else
         Flight.log("Failed to load keybinds")
     end
+
+    Flight.active = false
 
     Flight.log("Ready")
 

@@ -9,11 +9,11 @@
     </Row>
     <Row>
         <Cell>ui_keybinds_flight_fast</Cell>
-        <Cell>Fast Movement</Cell>
+        <Cell>Fast</Cell>
     </Row>
     <Row>
         <Cell>ui_keybinds_flight_slow</Cell>
-        <Cell>Slow Movement</Cell>
+        <Cell>Slow</Cell>
     </Row>
     <Row>
         <Cell>ui_keybinds_flight_up</Cell>
