@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<kcd_mod>
+  <info>
+    <name>Flight</name>
+    <modid>flight</modid>
+    <description></description>
+    <author>Sadge</author>
+    <version>0.3</version>
+  </info>
+</kcd_mod>

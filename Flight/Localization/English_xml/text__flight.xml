@@ -1,0 +1,26 @@
+<Table>
+	<Row>
+        <Cell>ui_keybinds_group_flight</Cell>
+        <Cell>Flight</Cell>
+    </Row>
+    <Row>
+        <Cell>ui_keybinds_flight_toggle</Cell>
+        <Cell>Toggle Flight</Cell>
+    </Row>
+    <Row>
+        <Cell>ui_keybinds_flight_fast</Cell>
+        <Cell>Fast Movement</Cell>
+    </Row>
+    <Row>
+        <Cell>ui_keybinds_flight_slow</Cell>
+        <Cell>Slow Movement</Cell>
+    </Row>
+    <Row>
+        <Cell>ui_keybinds_flight_up</Cell>
+        <Cell>Up</Cell>
+    </Row>
+    <Row>
+        <Cell>ui_keybinds_flight_down</Cell>
+        <Cell>Down</Cell>
+    </Row>
+</Table>
